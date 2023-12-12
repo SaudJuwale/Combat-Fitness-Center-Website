@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="https://kit.fontawesome.com/5ed311e6da.js" crossorigin="anonymous"></script>
+    <title>Home</title>
+</head>
+<body id="admissions">
+    <header>
+        <div id="fhead">
+            <img src="{% static '/img/logo/comabt.JPG' %}" alt="">
+            <div id="login">
+                {% if request.user.is_authenticated %}            
+                <div id="acc">
+                    <i id="useri" class="fa-solid fa-user"></i>
+                    <h1>{{request.user}}</h1> 
+                    <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+                </div>
+                {% else %}  
+                <ul>
+                    <li><a href="/auth">Sign In</a></li>
+                    <li><a href="/auth">Sign Up</a></li>
+                </ul>
+                {% endif %}
+            </div>
+            <div id="togglebtn">
+                {% if request.user.is_authenticated %}  
+                <h1>{{request.user}}</h1>
+                {% endif %}
+                <i id="bars" class="fa-solid fa-bars"></i>
+                <i id="cancel" class="fa-solid fa-xmark"></i>
+            </div>
+        </div>
+        <nav id="shead">
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/achievements">Achievements</a>
+                </li>
+                <li>
+                    <a id="active" href="/admission">Admission</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div id="mob">
+        <ul>
+            <li>
+                <a  href="/">Home</a>
+            </li>
+            <li id="activemob">
+                <a href="/achievements">Achievements</a>
+            </li>
+            <li>
+                <a href="/admission">Admission</a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li>
+                <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </li>
+            {% else %}      
+            <li>
+                <a href="/auth">Sign In</a>
+            </li>
+            <li>
+                <a href="/auth">Sign up</a>
+            </li>
+            
+            {% endif %}
+        </ul>
+    </div>
+    <section id="form_container">
+        <div id="detcard">
+            <form action="/admission" method="post">
+                {% csrf_token %}
+                <h1>Admission Here</h1>
+                <div id="firsdet">
+                    <input class="sinput" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Your Name'" placeholder="Enter Your Name" name="name" required>
+                    <input class="sinput" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Your Email'" placeholder="Enter Your Email" name="email" required>
+                </div>
+                <div id="secdet">
+                    <input class="sinput" type="number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Your Age'" placeholder="Enter Your Age" onKeyPress="if(this.value.length==3) return false;" name="age" required>
+                    <input class="sinput" type="number" placeholder="Enter Your number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Your number'" onKeyPress="if(this.value.length==10) return false;" name="number" required>     
+                </div>
+                <div id="thirdet">
+                    <textarea name="message" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your Aim'" placeholder="Enter your Aim" id="uinput"></textarea><br>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    {% for message in messages %}
+    <div id="{{message.tags}}">
+        <div class="subpartmsg">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div class="subpartmsg">
+            <p id="msg">{{message}}</p>
+        </div>
+        <div class="subpartmsg">
+            <i id="cancelms" class="fa-solid fa-xmark"></i>
+        </div>
+    </div>
+    {% endfor %}
+
+
+    <script src="{% static '/js/mob.js' %}"></script>
+    <script src="{% static '/js/msg.js' %}"></script>
+</body>
+</html>

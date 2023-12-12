@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CFC | Admin</title>
+    <script src="https://kit.fontawesome.com/5ed311e6da.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'admin.css' %}">
+
+</head>
+<body>
+
+    <header>
+        <img id="logo" src="{% static '/img/logo/comabt.JPG' %}" alt="">
+        <nav>
+            <ul>
+                <li><a id="active" href="/cfcadmin">Approval List</a></li>
+                <li><a href="/confirmlist">Confirmed List</a></li>
+                <li><a href="/waitinglist">Waiting List</a></li>
+                <a href="/adminlogout" id="logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+            </ul>
+        </nav>
+    </header>
+        
+        <table border="1" cellspacing="0" cellpadding="10">
+            <thead id="head">
+                <th>Entries</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Number</th>
+                <th>Age</th>
+                <th>Note</th>
+                <th>Confirm Admission</th>
+                <th>Wait for the response</th>
+                <th>Date & Time</th>
+            </thead>
+            {% for enroller in enrollers %}
+            {% if enroller.confirm == False and enroller.wait == False %}
+                <tr id="row" align="center">
+                    <form method="post" action="/approval">
+                        {% csrf_token %}
+                        <td>{{enroller.id}}</td>
+                        <td>{{enroller.name}}</td>
+                        <td>{{enroller.email}}</td>
+                        <td>{{enroller.number}}</td>
+                        <td>{{enroller.age}}</td>
+                        <td>{{enroller.msg}}</td>
+                        <input type="hidden" name="enrollerid" value="{{enroller.id}}">
+                        <input type="hidden" name="name" value="{{enroller.name}}">
+                        <input type="hidden" name="mail" value="{{enroller.email}}">
+                        <input type="hidden" value="{{enroller.number}}">
+                        <input type="hidden" value="{{enroller.age}}">
+                        <input type="hidden" value="{{enroller.msg}}">
+                        <td><input type="submit" id="confirm" name="confirm" value="confirm"></td>
+                        <td><input type="submit" id="wait" name="wait" value="wait"></td>
+                        <td>{{enroller.date}} - {{enroller.time}}</td>
+                    </form>
+                </tr>
+            {% endif %}
+            {% endfor %}
+        </table>
+        <script src="/static/js/mob.js">
+
+        </script>
+</body>
+</html>

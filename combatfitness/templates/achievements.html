@@ -1,0 +1,160 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="https://kit.fontawesome.com/5ed311e6da.js" crossorigin="anonymous"></script>
+    <title>Home</title>
+</head>
+<body id="achievements">
+    <div id="container">
+        <header>
+            <div id="fhead">
+                <img src="{% static '/img/logo/comabt.JPG' %}" alt="">
+                <div id="login">
+                    {% if request.user.is_authenticated %}            
+                    <div id="acc">
+                        <i id="useri" class="fa-solid fa-user"></i>
+                        <h1>{{request.user}}</h1> 
+                        <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+                    </div>
+                    {% else %}  
+                    <ul>
+                        <li><a href="/auth">Sign In</a></li>
+                        <li><a href="/auth">Sign Up</a></li>
+                    </ul>
+                    {% endif %}
+                </div>
+                <div id="togglebtn">
+                    {% if request.user.is_authenticated %}  
+                    <h1>{{request.user}}</h1>
+                    {% endif %}
+                    <i id="bars" class="fa-solid fa-bars"></i>
+                    <i id="cancel" class="fa-solid fa-xmark"></i>
+                </div>
+            </div>
+            <nav id="shead">
+                <ul>
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a id="active" href="/achievements">Achievements</a>
+                    </li>
+                    <li>
+                        <a href="/admission">Admission</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div id="mob">
+            <ul>
+                <li>
+                    <a  href="/">Home</a>
+                </li>
+                <li id="activemob"> 
+                    <a href="/achievements">Achievements</a>
+                </li>
+                <li>
+                    <a href="/admission">Admission</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                <li>
+                    <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                </li>
+                {% else %}      
+                <li>
+                    <a href="/auth">Sign In</a>
+                </li>
+                <li>
+                    <a href="/auth">Sign up</a>
+                </li>
+                
+                {% endif %}
+            </ul>
+        </div>
+        <section id="trainer">
+            <div class="card">
+                <video muted autoplay loop >
+                    <source src="{% static '/img/videos/showpromo.mp4' %}" type="video/mp4">
+                </video>                  
+                <div class="about">
+                    <h1>Sohail Khan</h1>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate veritatis autem sit nobis, labore, consectetur maiores hic enim quis corrupti accusamus quia! Enim consectetur ea explicabo corporis quo placeat optio blanditiis nesciunt praesentium necessitatibus.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section class="fighters">
+            <div class="card">
+                <img src="{% static '/img/achievements/mohsin.jpeg' %}" alt=""> 
+                <div class="about">
+                    <h1>Mohsin Shaikh</h1>
+                   <ul>
+                    <li>National Hero Amateur Mma Champions (2021) - ( <i class="fa-solid fa-medal gold"></i> GOLD MEDAL ).</li>
+                    <li>No gi Grappling Champions (2021) - ( <i class="fa-solid fa-medal gold"></i> GOLD MEDAL ).</li>
+                    <li>AIMMAF National Champion 2021  - ( <i class="fa-solid fa-medal silver"></i> SILVER MEDAL ).</li>
+                    <li>Professional Fight in Spartacus  - ( WINNER ).</li>
+                    <li>MMAFI contender Series 2022 - (  Mohsin Won Via TKO in his Pro Match ).</li>
+                    <li>AIMMAA National Champion 2022 - ( <i class="fa-solid fa-medal bronze"></i> BRONZE MEDAL ).</li>
+                    <li>MMAFI contender Series 2022 |  Mohsin Won Via TKO in his  Pro Match  - ( <i class="fa-solid fa-medal"></i> GOLD MEDAL ).</li>
+                   </ul>
+                </div>
+            </div>
+        </section>
+        <section class="fighters">
+            <div class="card">
+                <img src="{% static '/img/achievements/anas.jpeg' %}" alt=""> 
+                <div class="about">
+                    <h1>Anas Shaikh</h1>
+                   <ul>
+                    <li>District Kickboxing Champions (2021) - ( <i class="fa-solid fa-medal gold"></i> GOLD MEDAL ).</li>
+                    <li>MMAFI National Champion 2021 - ( <i class="fa-solid fa-medal gold"></i> GOLD MEDAL and NATIONAL CHAMPIONSHIP BELT ).</li>
+                    <li>MMAFI contender Series 2022 - ( Defended his Amateur National Bantam Weight Title and Won By Unanimous Decision ).</li>
+                    <li>AIMMAA National Champion 2022  - ( <i class="fa-solid fa-medal gold"></i> GOLD MEDAL ).</li>
+                    <li><i class="fa-solid fa-file-contract con"></i>&nbsp; Also MFN Contract holder.</li>
+                   </ul>
+                </div>
+            </div>
+        </section>
+        <section class="fighters">
+            <div class="card">
+                <img src="{% static '/img/achievements/alt.jpeg' %}" alt=""> 
+                <div class="about">
+                    <h1>Altamash Siddiqui</h1>
+                   <ul>
+                    <li>No gi Grappling Champions (2021) - ( <i class="fa-solid fa-medal silver"></i> SILVER MEDAL ).</li>
+                    <li>District Kickboxing Champions (2021) - ( <i class="fa-solid fa-medal gold"></i> GOLD MEDAL ).</li>
+                    <li>MMAFI contender Series 2022 - ( Won Via TKO ).</li>
+                    <li>AAIMMAA National Champion 2022  - ( <i class="fa-solid fa-medal bronze"></i> BRONZE MEDAL ).</li>
+                    <li>MMAFI National Champion 2022 - ( <i class="fa-solid fa-medal gold"></i> GOLD MEDAL And a Championship Ship Belt(Fly weight) ).</li>
+                    <li>National Amateur Championship 2023 - ( <i class="fa-solid fa-medal gold"></i> GOLD MEDAL and 10k Cash Price (Fly weight) ).</li>
+                   </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    {% for message in messages %}
+    <div id="{{message.tags}}">
+        <div class="subpartmsg">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div class="subpartmsg">
+            <p id="msg">{{message}}</p>
+        </div>
+        <div class="subpartmsg">
+            <i id="cancelms" class="fa-solid fa-xmark"></i>
+        </div>
+    </div>
+    {% endfor %}
+
+
+    <script src="{% static '/js/mob.js' %}"></script>
+   <script src="{% static '/js/msg.js' %}"></script>
+
+</body>
+</html>

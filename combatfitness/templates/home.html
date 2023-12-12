@@ -1,0 +1,179 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/5ed311e6da.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Home</title>
+</head>
+<body id="home">
+    <div id="container">
+        <header>
+            <div id="fhead">
+                <img src="{% static '/img/logo/comabt.JPG' %}" alt="">
+                <div id="login">
+                    {% if request.user.is_authenticated %}            
+                    <div id="acc">
+                        <i id="useri" class="fa-solid fa-user"></i>
+                        <h1>{{request.user}}</h1> 
+                        <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+                    </div>
+                    {% else %}  
+                    <ul>
+                        <li><a href="/auth">Sign In</a></li>
+                        <li><a href="/auth">Sign Up</a></li>
+                    </ul>
+                    {% endif %}
+                </div>
+                <div id="togglebtn">
+                    {% if request.user.is_authenticated %}  
+                    <h1>{{request.user}}</h1>
+                    {% endif %}
+                    <i id="bars" class="fa-solid fa-bars"></i>
+                    <i id="cancel" class="fa-solid fa-xmark"></i>
+                </div>
+            </div>
+            <nav id="shead">
+                <ul>
+                    <li>
+                        <a id="active" href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/achievements">Achievements</a>
+                    </li>
+                    <li>
+                        <a href="/admission">Admission</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div id="mob">
+            <ul>
+                <li>
+                    <a  href="/">Home</a>
+                </li>
+                <li id="activemob"> 
+                    <a href="/achievements">Achievements</a>
+                </li>
+                <li>
+                    <a href="/admission">Admission</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                <li>
+                    <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                </li>
+                {% else %}      
+                <li>
+                    <a href="/auth">Sign In</a>
+                </li>
+                <li>
+                    <a href="/auth">Sign up</a>
+                </li>
+                
+                {% endif %}
+            </ul>
+        </div>
+        <section id="main">
+            <div id="maintxt">
+                <h1><span>Look In The Mirror.</span> That’s Your Competition.</h1>
+                <p>Nowadays people forget about themselves, they achieve so many things in their life, they do hardwork and struggle to build wealth but what about physical health. Your fitness is your biggest Competition, so you should start working on yourself and we will help you in your fitness journey.</p>
+                <a href="/admission">Admission</a>
+            </div>
+            <div id="mainbanner">
+
+            </div>
+        </section>
+        <section id="cfcabout">
+            <div id="grid-container">
+                <h1>We offer MMA training that includes</h1>
+                <div id="offers">
+                    <div id="training">
+                        <img src="{% static '/img/icon/mma.png' %}" alt="">
+                        <h1>MMA</h1>
+                    </div>
+                    <div id="training">
+                        <img src="{% static '/img/icon/kickboxing.png' %}" alt="">
+                        <h1>KICKBOXING</h1>
+                    </div>
+                    <div id="training">
+                        <img src="{% static '/img/icon/boxing.png' %}" alt="">
+                        <h1>BOXING</h1>
+                    </div>
+                    <div id="training">
+                        <img src="{% static '/img/icon/thai.png' %}" alt="">
+                        <h1>THAI BOXING</h1>
+                    </div>
+                    <div id="training">
+                        <img src="{% static '/img/icon/jiu.png' %}" alt="">
+                        <h1>BRAZILIAN JIU JITSU</h1>
+                    </div>
+                    <div id="training">
+                        <img src="{% static '/img/icon/wrestling.png' %}" alt="">
+                        <h1>WRESTLING</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="trainmore">
+            <div id="offers">
+                <div id="training">
+                    <h1>KARATE</h1>
+                </div>
+                <div id="training">
+                    <h1>CROSSFIT</h1>
+                </div>
+                <div id="training">
+                    <h1>FUNCTIONAL TRAINING</h1>
+                </div>
+                <div id="training">
+                    <h1>STRENGTH & <br> CONDITIONING</h1>
+                </div>
+            </div>
+        </section>
+        <section id="merch">
+            <h1>CFC Merchandise</h1>
+            <div id="merch-content">
+                <div id="prods">
+                    <div id="prods-grid">
+                        <img src="{% static '/img/prods/prod1.JPEG' %}" alt="">
+                        <img src="{% static '/img/prods/prod2.JPEG' %}" alt="">
+                        <img src="{% static '/img/prods/prod3.JPEG' %}" alt="">
+                        <img src="{% static '/img/prods/prod4.png' %}" alt="">
+                    </div>
+                </div>
+                <div id="orddet">
+                    <h1>Elevate Your Warrior Style!</h1>
+                    <p>Gear up for victory and unleash your inner warrior with our exclusive MMA merchandise collection. Elevate your training, show your dedication, and conquer your goals in style. Shop now and embrace the fighter within! </p>
+                    <a href=""><i class="fa-brands fa-whatsapp"></i> Order</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    {% for message in messages %}
+    <div id="{{message.tags}}">
+        <div class="subpartmsg">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div class="subpartmsg">
+            <p id="msg">{{message}}</p>
+        </div>
+        <div class="subpartmsg">
+            <i id="cancelms" class="fa-solid fa-xmark"></i>
+        </div>
+    </div>
+    {% endfor %}
+
+    <script src="{% static 'js/mob.js' %}">
+
+    </script>
+   <script src="{% static 'js/msg.js' %}"></script>
+
+    </script>
+</body>
+</html>
